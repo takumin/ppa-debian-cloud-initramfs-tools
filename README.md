@@ -8,7 +8,7 @@ This PPA repository aims to use the cloud-initramfs-tools maintainer team's deli
 
 # Required
 ```console
-$ sudo apt install build-essential dpkg-dev debhelper quilt
+$ sudo apt install build-essential devscripts debhelper quilt
 ```
 
 # Reference
