@@ -1,3 +1,8 @@
 *.tar.gz
+*.tar.xz
+*.buildinfo
+*.changes
+*.deb
+*.dsc
 debian10/
 debian11/
