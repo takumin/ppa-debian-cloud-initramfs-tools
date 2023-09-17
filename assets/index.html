@@ -19,10 +19,10 @@
     <pre><code>sudo apt-get install apt-transport-https ca-certificates</code></pre>
     <h2>Download GPG public key</h2>
     <pre><code>sudo wget -O /etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools/pubkey.asc</code></pre>
-    <h2>Configuration APT sources.list</h2>
+    <h2>Configure APT sources.list</h2>
     <pre><code>echo "deb [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/ppa-debian-cloud-initramfs-tools.list</code></pre>
     <pre><code>echo "deb-src [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/ppa-debian-cloud-initramfs-tools.list</code></pre>
-    <h2>Appendix.</h2>
+    <h2>References</h2>
     <dl>
       <dt>Upstream Repository</dt>
       <dd><a href="https://github.com/chesty/overlayroot">https://github.com/chesty/overlayroot</a></dd>
