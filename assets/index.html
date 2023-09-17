@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Debian Personal Package Archive for cloud-initramfs-tools</title>
+  </head>
+  <body>
+    <h1>Debian Personal Package Archive for cloud-initramfs-tools</h1>
+    <p>Although the overlayroot present in Ubuntu helps protect RootFS, it is not possible to install the overlayroot package from the official Apt repository in Debian 10 and Debian 11.</p>
+    <p>Fortunately, however, the cloud-initramfs-tools maintainer team has released packages for Debian 10 and Debian 11 that include overlayroot.</p>
+    <p>This PPA repository is intended to use the work of the cloud-initramfs-tools maintainer team and redistribute the overlayroot package.</p>
+    <h2>Supported platforms</h2>
+    <ul>
+      <li>Debian 10 (buster)</li>
+      <li>Debian 11 (bullseye)</li>
+    </ul>
+    <h2>Install required packages</h2>
+    <pre><code>sudo apt-get update</code></pre>
+    <pre><code>sudo apt-get install apt-transport-https ca-certificates</code></pre>
+    <h2>Download GPG public key</h2>
+    <pre><code>sudo wget -O /etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools/pubkey.asc</code></pre>
+    <h2>Configuration APT sources.list</h2>
+    <pre><code>echo "deb [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/ppa-debian-cloud-initramfs-tools.list</code></pre>
+    <pre><code>echo "deb-src [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/ppa-debian-cloud-initramfs-tools.list</code></pre>
+    <h2>Appendix.</h2>
+    <dl>
+      <dt>Upstream Repository</dt>
+      <dd><a href="https://github.com/chesty/overlayroot">https://github.com/chesty/overlayroot</a></dd>
+      <dt>Debian Maintainer Team Repository</dt>
+      <dd><a href="https://salsa.debian.org/cloud-team/cloud-initramfs-tools">https://salsa.debian.org/cloud-team/cloud-initramfs-tools</a></dd>
+      <dt>Debian Personal Package Archive Repository</dt>
+      <dd><a href="https://github.com/takumin/ppa-debian-cloud-initramfs-tools">https://github.com/takumin/ppa-debian-cloud-initramfs-tools</a></dd>
+    </dl>
+  </body>
+</html>
