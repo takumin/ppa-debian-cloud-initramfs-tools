@@ -48,10 +48,10 @@ repository: package
 	@cp build/debian11/*.dsc public/pool/bullseye/main/
 	@cp build/debian11/*.tar.xz public/pool/bullseye/main/
 	@cp build/debian11/*.deb public/pool/bullseye/main/
-	@cd public && apt-ftparchive generate ../config/debian10-repos.conf
-	@cd public && apt-ftparchive generate ../config/debian11-repos.conf
-	@cd public && apt-ftparchive -c ../config/debian10-meta.conf release dists/buster > dists/buster/Release
-	@cd public && apt-ftparchive -c ../config/debian11-meta.conf release dists/bullseye > dists/bullseye/Release
+	@cd public && apt-ftparchive generate ../assets/debian10-repos.conf
+	@cd public && apt-ftparchive generate ../assets/debian11-repos.conf
+	@cd public && apt-ftparchive -c ../assets/debian10-meta.conf release dists/buster > dists/buster/Release
+	@cd public && apt-ftparchive -c ../assets/debian11-meta.conf release dists/bullseye > dists/bullseye/Release
 	@gpg --clearsign -o public/dists/buster/InRelease public/dists/buster/Release
 	@gpg --clearsign -o public/dists/bullseye/InRelease public/dists/bullseye/Release
 	@gpg -abs -o public/dists/buster/Release.gpg public/dists/buster/Release
