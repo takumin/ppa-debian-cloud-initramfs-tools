@@ -29,7 +29,7 @@ jobs:
       - name: Setup secrets
         run: mkdir -m 0700 secret
       - name: Import GPG passphrase
-        run: echo -n "${{ secrets.GPG_PASSPHRASE }}" > secret/passphrase
+        run: echo -n "${{ secrets.GPG_PASSPHRASE }}" | base64 -d > secret/passphrase
       - name: Import GPG signing key
         run: echo -n "${{ secrets.GPG_SIGNING_KEY }}" > secret/secret.gpg.asc
       - name: Build artifact
