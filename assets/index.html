@@ -18,10 +18,13 @@
     <pre><code>sudo apt-get update</code></pre>
     <pre><code>sudo apt-get install apt-transport-https ca-certificates</code></pre>
     <h2>Download GPG public key</h2>
-    <pre><code>sudo wget -O /etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools/pubkey.asc</code></pre>
+    <pre><code>sudo wget -O /etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools/public.gpg.asc</code></pre>
     <h2>Configure APT sources.list</h2>
     <pre><code>echo "deb [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/ppa-debian-cloud-initramfs-tools.list</code></pre>
-    <pre><code>echo "deb-src [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/ppa-debian-cloud-initramfs-tools.list</code></pre>
+    <pre><code>echo "deb-src [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools $(lsb_release -sc) main" | tee -a /etc/apt/sources.list.d/ppa-debian-cloud-initramfs-tools.list</code></pre>
+    <h2>Install overlayroot package</h2>
+    <pre><code>sudo apt-get update</code></pre>
+    <pre><code>sudo apt-get install overlayroot</code></pre>
     <h2>References</h2>
     <dl>
       <dt>Upstream Repository</dt>
