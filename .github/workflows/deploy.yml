@@ -26,6 +26,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y build-essential devscripts debhelper quilt
+      - name: Setup secrets
+        run: mkdir -m 0700 secret
+      - name: Import GPG passphrase
+        run: echo -n "${{ secrets.GPG_PASSPHRASE }}" > secret/passphrase
+      - name: Import GPG signing key
+        run: echo -n "${{ secrets.GPG_SIGNING_KEY }}" > secret/secret.gpg.asc
       - name: Build artifact
         run: make
       - name: Setup Pages

@@ -73,7 +73,7 @@ repository: package
 	@cd public && apt-ftparchive -c ../assets/debian11-meta.conf release dists/bullseye > dists/bullseye/Release
 
 .PHONY: reposign
-reposign: repository
+reposign: import-gpg repository
 	@gpg --homedir secret/gpghome \
 		--pinentry-mode loopback \
 		--passphrase "$$(cat secret/passphrase)" \
@@ -103,13 +103,19 @@ reposign: repository
 assets: reposign
 	@cp assets/index.html public/index.html
 	@cp assets/public.gpg.asc public/public.gpg.asc
-	@echo 'deb [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools buster main' > public/buster.source.list
-	@echo 'deb-src [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools buster main' >> public/buster.source.list
-	@echo 'deb [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools bullseye main' > public/bullseye.source.list
-	@echo 'deb-src [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools bullseye main' >> public/bullseye.source.list
 
-.PHONY: gengpg
-gengpg: assets/public.gpg.asc secret/secret.gpg.asc
+.PHONY: import-gpg
+import-gpg:
+	@mkdir -p -m 0700 secret/gpghome
+	@gpg --homedir secret/gpghome \
+		--pinentry-mode loopback \
+		--passphrase "$$(cat secret/passphrase)" \
+		--import \
+		--allow-secret-key-import \
+		secret/secret.gpg.asc
+
+.PHONY: generate-gpg
+generate-gpg: assets/public.gpg.asc secret/secret.gpg.asc
 secret/passphrase:
 	@mkdir -p -m 0700 secret
 	@pwgen -ncys1 64 > secret/passphrase
@@ -141,8 +147,8 @@ clean:
 	@docker system prune -f
 	@sudo rm -fr build
 	@rm -fr public
+	@rm -fr secret/gpghome
 
 .PHONY: deepclean
 deepclean:
 	@rm -fr cache
-	@rm -fr secret
