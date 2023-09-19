@@ -18,6 +18,7 @@
     <pre><code>sudo apt-get update</code></pre>
     <pre><code>sudo apt-get install apt-transport-https wget ca-certificates lsb-release</code></pre>
     <h2>Download GPG public key</h2>
+    <pre><code>sudo mkdir -p -m 0755 /etc/apt/keyrings</code></pre>
     <pre><code>sudo wget -O /etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools/public.gpg.asc</code></pre>
     <h2>Configure APT sources.list</h2>
     <pre><code>echo "deb [signed-by=/etc/apt/keyrings/ppa-debian-cloud-initramfs-tools.asc] https://takumi.tmfam.com/ppa-debian-cloud-initramfs-tools $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/ppa-debian-cloud-initramfs-tools.list</code></pre>
